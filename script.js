@@ -1,30 +1,64 @@
-const transactions = [
-    { id: 1, user: "Ali", type: "deposit", amount: 200 },
-    { id: 2, user: "Ali", type: "withdraw", amount: 50 },
-    { id: 3, user: "Leyla", type: "deposit", amount: 500 },
-    { id: 4, user: "Ali", type: "deposit", amount: 100 },
-    { id: 5, user: "Leyla", type: "withdraw", amount: 200 },
-    { id: 6, user: "Murad", type: "deposit", amount: 300 }
-  ];
+function Book(title, author, genre) {
+  this.title = title
+  this.author = author
+  this.genre = genre
+}
 
-  const getUserSummary = (transactions) => {
-    return Object.values(
-      transactions.reduce((acc, { user, type, amount }) => {
-        if (!acc[user]) {
-          acc[user] = {
-            user,
-            balance: 0,
-            transactionsCount: 0
-          };
-        }
-        
-        acc[user].balance += type === "deposit" ? amount : -amount;
-        acc[user].transactionsCount++;
-        
-        return acc;
-      }, {})
-    );
-  };
+Book.prototype.getDetails = function () {
+  return this.title + " by " + this.author + ", Genre: " + this.genre
+}
 
-  const result = getUserSummary(transactions);
-  console.log(result);
+function EBook(title, author, genre, fileSize) {
+  Book.call(this, title, author, genre)
+  this.fileSize = fileSize
+}
+
+EBook.prototype = Object.create(Book.prototype)
+EBook.prototype.constructor = EBook
+
+EBook.prototype.download = function () {
+  console.log(this.title + " is downloading...")
+}
+
+function PrintedBook(title, author, genre, pages) {
+  Book.call(this, title, author, genre)
+  this.pages = pages
+}
+
+PrintedBook.prototype = Object.create(Book.prototype)
+PrintedBook.prototype.constructor = PrintedBook
+
+PrintedBook.prototype.read = function () {
+  console.log(this.title + " is being read...")
+}
+
+function Library(name) {
+  this.name = name
+  this.books = []
+}
+
+Library.prototype.addBook = function (book) {
+  console.log("Added to " + this.name + ": " + book.title)
+  this.books.push(book)
+}
+
+Library.prototype.listBooks = function () {
+  console.log("Books in " + this.name + ":")
+
+  this.books.forEach(function (book, index) {
+    console.log((index + 1) + ". " + book.getDetails())
+  })
+}
+
+const lib = new Library("Central Library")
+
+const book1 = new EBook("JS Basics", "Ilkin", "Programming", "5MB")
+const book2 = new PrintedBook("CSS Guide", "Ilkin", "Design", 300)
+
+lib.addBook(book1)
+lib.addBook(book2)
+
+lib.listBooks()
+
+book1.download()
+book2.read()
