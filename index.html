@@ -7,7 +7,128 @@
     <script type="module" defer src="script.js"></script>
     <title>Document</title>
 </head>
-<body>
-    
+<body class="bg-gray-100 p-6">
+
+    <h1 class="text-2xl font-bold mb-6">Shopping Site</h1>
+
+    <div class="grid grid-cols-4 gap-4 mb-6" id="products">
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://m.media-amazon.com/images/I/510uTHyDqGL._AC_UF1000,1000_QL80_.jpg" alt=""></div>
+        <p class="font-semibold">Windows laptop</p>
+        <p class="text-sm text-gray-500">1000 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="Windows laptop"
+          data-price="1000">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://www.iphotography.com/wp-content/uploads/2023/06/Best-Cameras-for-Professional-Photography-6.jpg" alt=""></div>
+        <p class="font-semibold">photo camera</p>
+        <p class="text-sm text-gray-500">600 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="photo camera"
+          data-price="600">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://extremepcs.com/cdn/shop/files/TGPEXPC01_1.png?v=1763524712" alt=""></div>
+        <p class="font-semibold">custom pc</p>
+        <p class="text-sm text-gray-500">1600 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="custom pc"
+          data-price="1600">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://image-us.samsung.com/SamsungUS/home/computing/monitors/gaming/04162024/LS49CG954ENXZA_V2.jpg?$product-details-jpg$" alt=""></div>
+        <p class="font-semibold">49 inch monitor</p>
+        <p class="text-sm text-gray-500">2000 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="49 inch monitor"
+          data-price="2000">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://qiymeti.net/wp-content/uploads/playstation-5-pro-qiymeti-280x280.jpg" alt=""></div>
+        <p class="font-semibold">Playstation 5 pro</p>
+        <p class="text-sm text-gray-500">1500 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="Playstation 5 pro"
+          data-price="1500">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://assets.smartelectronics.az/Assets/cdn-cgi?path=abf0d35c-6508-4874-8155-2b084d511c4c.webp" alt=""></div>
+        <p class="font-semibold">Xbox Series X</p>
+        <p class="text-sm text-gray-500">600 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="Xbox Series X"
+          data-price="600">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-63 mb-3"><img src="https://m.media-amazon.com/images/I/61D2DDpDITL.jpg" alt=""></div>
+        <p class="font-semibold">CORSAIR VENGEANCE RGB DDR5 RAM 32GB </p>
+        <p class="text-sm text-gray-500">435 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="CORSAIR VENGEANCE RGB DDR5 RAM 32GB "
+          data-price="435">
+          click
+        </button>
+      </div>
+
+      <div class="bg-white p-10 rounded shadow">
+
+        <div class="h-68 mb-3"><img src="https://www.maxgaming.com/bilder/artiklar/zoom/19541_1.jpg?m=1631793542" alt=""></div>
+        <p class="font-semibold">Razer BlackShark V2</p>
+        <p class="text-sm text-gray-500">100 USD</p>
+        <button 
+          class="mt-3 w-full bg-blue-500 text-white py-3 rounded add-to-cart cursor-pointer font-bold"
+          data-name="Razer BlackShark V2"
+          data-price="100">
+          click
+        </button>
+      </div>
+  
+
+      
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-lg font-semibold mb-3">Basket</h2>
+      <ul id="basketList" class="mb-4 text-sm"></ul>
+      <button 
+        id="completeOrder"
+        class="bg-green-500 text-white px-4 py-2 rounded font-bold cursor-pointer">
+        Finsh
+      </button>
+    </div>
 </body>
 </html>

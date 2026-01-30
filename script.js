@@ -1,64 +1,44 @@
-function Book(title, author, genre) {
-  this.title = title
-  this.author = author
-  this.genre = genre
-}
+const basket = [];
 
-Book.prototype.getDetails = function () {
-  return this.title + " by " + this.author + ", Genre: " + this.genre
-}
+document.querySelectorAll(".add-to-cart").forEach(btn => {
+  btn.addEventListener("click", () => {
 
-function EBook(title, author, genre, fileSize) {
-  Book.call(this, title, author, genre)
-  this.fileSize = fileSize
-}
+    const product = {
+      name: btn.dataset.name,
+      price: btn.dataset.price
+    };
 
-EBook.prototype = Object.create(Book.prototype)
-EBook.prototype.constructor = EBook
+    document.dispatchEvent(
+      new CustomEvent("basket:add", {
+        detail: product
+      })
+    );
+  });
+});
 
-EBook.prototype.download = function () {
-  console.log(this.title + " is downloading...")
-}
+document.addEventListener("basket:add", e => {
+  basket.push(e.detail);
 
-function PrintedBook(title, author, genre, pages) {
-  Book.call(this, title, author, genre)
-  this.pages = pages
-}
+  const li = document.createElement("li");
+  li.textContent = `${e.detail.name} — ${e.detail.price} USD`;
+  document.getElementById("basketList").appendChild(li);
 
-PrintedBook.prototype = Object.create(Book.prototype)
-PrintedBook.prototype.constructor = PrintedBook
+  console.log("Product added:", e.detail);
+});
 
-PrintedBook.prototype.read = function () {
-  console.log(this.title + " is being read...")
-}
+document.getElementById("completeOrder").addEventListener("click", () => {
+  document.dispatchEvent(
+    new CustomEvent("order:completed", {
+      detail: {
+        email: "eminmuradov035@mail.com",
+        address: "Baku, Azerbaijan",
+        products: basket
+      }
+    })
+  );
+});
 
-function Library(name) {
-  this.name = name
-  this.books = []
-}
-
-Library.prototype.addBook = function (book) {
-  console.log("Added to " + this.name + ": " + book.title)
-  this.books.push(book)
-}
-
-Library.prototype.listBooks = function () {
-  console.log("Books in " + this.name + ":")
-
-  this.books.forEach(function (book, index) {
-    console.log((index + 1) + ". " + book.getDetails())
-  })
-}
-
-const lib = new Library("Central Library")
-
-const book1 = new EBook("JS Basics", "Ilkin", "Programming", "5MB")
-const book2 = new PrintedBook("CSS Guide", "Ilkin", "Design", 300)
-
-lib.addBook(book1)
-lib.addBook(book2)
-
-lib.listBooks()
-
-book1.download()
-book2.read()
+document.addEventListener("order:completed", e => {
+  alert("Oder Completed");
+  console.log("Order data:", e.detail);
+});
